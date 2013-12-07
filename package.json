@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "2.0.0",
+  "name": "Perfume",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node server"
@@ -12,6 +12,8 @@
     "nconf": "~0.6.7",
     "socket.io": "~0.9.13",
     "everyauth": "https://github.com/bnoguchi/everyauth/tarball/express3",
-    "recaptcha": "~1.2.0"
+    "recaptcha": "~1.2.0",
+	"mysql": "*",
+	"sequelize": "*"
   }
 }
