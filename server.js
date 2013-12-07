@@ -3,6 +3,7 @@
 var http    = require('http');
 var express = require('express');
 var fs      = require('fs');
+var path      = require('path');
 
 
 /**
@@ -73,6 +74,24 @@ var PerfumeWebApp = function() {
      */
     self.initializeServer = function() {
         self.app = express();
+
+        self.app.use(express.errorHandler()); // developement mode
+        self.app.set('views', __dirname + '/views');
+        self.app.set('view engine', 'jade');
+        //    self.app.use(express.favicon());
+        //    self.app.use(express.logger('dev'));
+        //    self.app.use(express.bodyParser());
+        //    self.app.use(express.methodOverride());
+        //    self.app.use(express.cookieParser('azure zomg'));
+        //    self.app.use(express.session());
+        //    self.app.use(everyauth.middleware(app));
+        self.app.use(self.app.router);
+        self.app.use(require('less-middleware')({ src: __dirname + '/public' }));
+        self.app.use(express.static(path.join(__dirname, 'public')));
+        self.app.use("/css", express.static(__dirname + "/css"));
+        self.app.use("/fonts", express.static(__dirname + "/fonts"));
+        self.app.use("/js", express.static(__dirname + "/js"));
+
         //  Add handlers for the app (from the routes).
         require('./server.routes')(self.app);
         require('./server.rest')(self.app);
