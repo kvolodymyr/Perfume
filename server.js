@@ -3,7 +3,8 @@
 var http    = require('http');
 var express = require('express');
 var fs      = require('fs');
-var path      = require('path');
+var path    = require('path');
+var nconf   = require('nconf');
 
 
 /**
@@ -24,8 +25,9 @@ var PerfumeWebApp = function() {
      */
     self.setupVariables = function() {
         //  Set the environment variables we need.
-        self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080;
+        self.ipaddress  = process.env.OPENSHIFT_NODEJS_IP;
+        self.port       = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080;
+        self.env_id     = process.env.NODE_ENV || "production";
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -75,6 +77,9 @@ var PerfumeWebApp = function() {
     self.initializeServer = function() {
         self.app = express();
 
+        self.app.nconf      = nconf;
+        self.app.nconf.env().file({ file: 'settings.'+self.env_id+'.json' });
+
         self.app.use(express.errorHandler()); // developement mode
         self.app.set('views', __dirname + '/views');
         self.app.set('view engine', 'jade');
@@ -93,8 +98,8 @@ var PerfumeWebApp = function() {
         self.app.use("/js", express.static(__dirname + "/js"));
 
         //  Add handlers for the app (from the routes).
-        require('./server.routes')(self.app);
         require('./server.rest')(self.app);
+        require('./server.routes')(self.app);
     };
 
 
