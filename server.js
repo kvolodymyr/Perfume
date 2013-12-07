@@ -1,4 +1,4 @@
-﻿// Node.js entry point
+// Node.js entry point
 var http = require('http')
 ,   express = require('express')
 ,   nconf = require('nconf')
