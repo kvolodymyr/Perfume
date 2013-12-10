@@ -10,7 +10,10 @@ module.exports = function (app) {
             app.nconf.get('database:database'),
             app.nconf.get('database:username'),
             app.nconf.get('database:password'),
-            {   logging: true
+            {   
+                logging: true,
+                host: app.nconf.get('database:server') || '127.0.0.1',
+                port: 3306
                 // dialect: 'mysql'
                 //, define: {
                 //    freezeTableName: true
