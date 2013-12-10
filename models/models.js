@@ -1,3 +1,7 @@
+// http://sequelizejs.com/documentation
+// some ideas
+// how to save config - http://stackoverflow.com/questions/18313203/route-structure-in-nodejs-expressjs
+// how to organize modules - http://stackoverflow.com/questions/16991798/sequelize-define-error-has-no-method-define-in-nodejs
 var Sequelize = require("sequelize");
 
 module.exports = function (app) {

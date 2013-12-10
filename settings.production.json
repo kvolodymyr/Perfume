@@ -12,7 +12,7 @@
         "privateKey": "{ your recaptcha private key production }"
     },
 	"database": {
-		"server": "127.0.0.1",
+		"server": "127.10.137.130",
 		"database": "best",
 		"username": "adminDM4VqpH",
 		"password": "ZWHZkdk5G_NW"
