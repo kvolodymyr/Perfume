@@ -10,5 +10,11 @@
     "recaptcha": {
         "publicKey": "{ your recaptcha public key development }",
         "privateKey": "{ your recaptcha private key development }"
-    }
+    },
+	"database": {
+		"server": "127.0.0.1",
+		"database": "perfume",
+		"username": "root",
+		"password": "root"
+	}
 }

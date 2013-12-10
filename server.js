@@ -5,7 +5,7 @@ var express = require('express');
 var fs      = require('fs');
 var path    = require('path');
 var nconf   = require('nconf');
-
+var sequelize = require("sequelize");
 
 /**
  *  Define the application.
@@ -79,6 +79,18 @@ var PerfumeWebApp = function() {
 
         self.app.nconf      = nconf;
         self.app.nconf.env().file({ file: 'settings.'+self.env_id+'.json' });
+
+        //var seq = new sequelize(
+        //    nconf.get('database:database'), 
+        //    nconf.get('database:username'), 
+        //    nconf.get('database:password'), 
+        //    { logging: true });
+        //seq
+        //.query("select * from test")
+        //.success(function(o){
+        //}).error(function(error) {
+        //});
+        //// exports.sequelize = sequelize
 
         self.app.use(express.errorHandler()); // developement mode
         self.app.set('views', __dirname + '/views');
