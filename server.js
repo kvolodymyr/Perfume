@@ -95,6 +95,7 @@ var PerfumeWebApp = function() {
         self.app.use(express.errorHandler()); // developement mode
         self.app.set('views', __dirname + '/views');
         self.app.set('view engine', 'jade');
+        self.app.set('models', require('./models')(self.app));
         //    self.app.use(express.favicon());
         //    self.app.use(express.logger('dev'));
         //    self.app.use(express.bodyParser());
